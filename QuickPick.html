@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Quick Pick</title>
+</head>
+<body>
+	<script language="javascript">
+		var numInput = "", winningNumbers = [], winLuckyBall, quickPick = [], luckyBall, match = 0, NUMBERS = 5, luckyMatch = false;
+		
+		numInput = prompt("Enter winning numbers seperated by a space");
+		
+		numInput = numInput.split(" ");
+		
+		for (var i = 0; i < numInput.length; i++) {
+			winningNumbers.push(numInput[i]);
+		}
+		
+		winLuckyBall = prompt("Enter winning lucky ball number");
+		
+		for (var i=0; i<NUMBERS; i++){
+			quickPick[i] = Math.floor((Math.random() * 48) + 1);
+		}
+
+		luckyBall = (Math.floor(Math.random() * 18) + 1);
+		
+		document.write("The quick pick numbers are: ");
+		for (var i=0; i<quickPick.length; i++){
+			document.write(quickPick[i] + " ");
+		}
+		
+		document.write("<br>" + "The lucky ball number is: " + luckyBall + "<br>");
+		
+		document.write("<br>" + "The winning numbers are: ");
+		for (var i=0; i<winningNumbers.length; i++){
+			document.write(winningNumbers[i] + " ");
+		}
+		
+		document.write("<br> The winning lucky ball number is: " + winLuckyBall + "<br>");
+		
+		winningNumbers.sort();
+		quickPick.sort();
+				
+		for (var i=0; i<winningNumbers.length; i++){
+			for (var j=0; j<quickPick.length; j++)
+				if (winningNumbers[i] == quickPick[j])
+					match++;
+		}
+		
+		if (match == 1){
+			document.write("<br>" + "You got " + match + " quick pick match");
+		} else if (match == 0){
+			document.write("<br>" + "You got " + match + " matches");
+		} else {
+			document.write("<br>" + "You got " + match + " quick pick matches");
+		}
+		
+		if (luckyBall == winLuckyBall) {
+			document.write(" and the lucky ball match!" + "<br>");
+			luckyMatch = true;
+		} else {
+			document.write("!" + "<br>");
+		}
+			
+		
+		if (match == 5 && luckyMatch){
+			document.write("You win! Your payout is: $7,000 a WEEK for LIFE <br / >");
+		} else if (match == 5 && !luckyMatch){
+			document.write("You win! Your payout is: $25,000 a YEAR for LIFE <br / >");
+		} else if (match == 4 && luckyMatch){
+			document.write("You win! Your payout is: $5,000 <br / >");
+		} else if (match == 4 && !luckyMatch){
+			document.write("You win! Your payout is: $200 <br / >");
+		} else if (match == 3 && luckyMatch){
+			document.write("You win! Your payout is: $150 <br / >");
+		} else if (match == 3 && !luckyMatch){
+			document.write("You win! Your payout is: $20 <br / >");
+		} else if (match == 2 && luckyMatch){
+			document.write("You win! Your payout is: $25 <br / >");
+		} else if (match == 2 && !luckyMatch){
+			document.write("You win! Your payout is: $3 <br / >");
+		} else if (match == 1 && luckyMatch){
+			document.write("You win! Your payout is: $6 <br / >");
+		} else if (match == 0 && luckyMatch){
+			document.write("You win! Your payout is: $4 <br / >");
+		} else {
+			document.write("Sorry you lost! Your payout is: $0");
+		} 	   
+	</script>
+</body>
+</html>
